@@ -3,3 +3,6 @@
 # To do
 
 - [ ] Handle `xem-chi-tiet` button
+- [ ] Accessories page
+- [ ] Contact page
+- [ ] Search
