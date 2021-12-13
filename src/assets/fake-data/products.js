@@ -38,7 +38,7 @@ const product_13_image_01 = require('../images/products/day-chuyen-phong-thuy-01
 const product_13_image_02 = require('../images/products/day-chuyen-phong-thuy-01_2.jfif').default
 
 const product_14_image_01 = require('../images/products/tui-dung-tarot-01.jpg').default
-const product_14_image_02 = require('../images/products/tui-dung-tarot-01_2.jfif').default
+const product_14_image_02 = require('../images/products/tui-dung-tarot-01_2.jpg').default
 
 //slider
 const product_15_image_01 = require('../images/slider/slider_1.png').default
