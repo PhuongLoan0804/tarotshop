@@ -6,3 +6,8 @@
 - [ ] Accessories page
 - [ ] Contact page
 - [ ] Search
+
+# Features
+
+![alt text](./features.png)
+
