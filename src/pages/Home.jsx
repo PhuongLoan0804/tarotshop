@@ -91,7 +91,7 @@ const Home = () => {
              <Section>
                 <SectionBody>
                     <Link to="/catalog">
-                        <img src={banner} alt="" />
+                        <img style={{width: "100%"}} src={banner} alt="" />
                     </Link>
                 </SectionBody>
             </Section>

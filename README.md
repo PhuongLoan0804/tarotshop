@@ -2,7 +2,7 @@
 
 # To do
 
-- [ ] Handle `xem-chi-tiet` button
+- [X] Handle `xem-chi-tiet` button
 - [ ] Accessories page
 - [ ] Contact page
 - [ ] Search

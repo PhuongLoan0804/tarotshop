@@ -38,7 +38,17 @@ const product_13_image_01 = require('../images/products/day-chuyen-phong-thuy-01
 const product_13_image_02 = require('../images/products/day-chuyen-phong-thuy-01_2.jfif').default
 
 const product_14_image_01 = require('../images/products/tui-dung-tarot-01.jpg').default
-const product_14_image_02 = require('../images/products/tui-dung-tarot-01_2.jfif').default
+const product_14_image_02 = require('../images/products/tui-dung-tarot-01_2.jpg').default
+
+//slider
+const product_15_image_01 = require('../images/slider/slider_1.png').default
+const product_15_image_02 = require('../images/slider/slider_1-2.png').default
+
+const product_16_image_01 = require('../images/slider/slider_2.png').default
+const product_16_image_02 = require('../images/slider/slider_2-2.png').default
+
+const product_17_image_01 = require('../images/slider/slider_3.png').default
+const product_17_image_02 = require('../images/slider/slider_3-2.png').default
 
 
 const products = [
@@ -161,12 +171,40 @@ const products = [
         description: "Nếu bạn đã từng sở hữu hoặc mê đắm say bộ bài Tarot of Jane Austen thì lần này, bạn vẫn sẽ được bước vào thế giới tiểu thuyết tình yêu của Jane Austen nhưng với một phiên bản hoàn toàn khác, A Jane Austen Tarot Deck. Có lẽ nếu áp dụng hệ thống Tarot thông thường thì bộ bài sẽ không có điểm gì thú vị, vì vậy Jacqui Oakley đã tự thiết kế một hệ thống dựa trên nền của bài tây (hoặc Lenormand) nhưng vẫn mang ý nghĩa của Tarot. Mỗi con số, mỗi ký hiệu sẽ đại diện cho một lá bài Tarot nào đó, những lá hoàng gia sẽ là một nhân vật tiểu thuyết của Jane Austen, như Elizabeth Bennet, Mr. Darcy, Elinor Dashwood. Đặc biệt hơn nữa, chính hình ảnh Jane Austen sẽ đại diện cho lá bài Magician cũng là người đem đến ý tưởng này đến cho tác giả bộ bài thực hiện được chúng. Bộ bài  A Jane Austen Tarot Deck rất phù hợp để tiên tri, định hướng và tìm kiếm lời khuyên dành cho chuyện tình cảm và các mối quan hệ.",
     },
     {
-        title: "Túi đựng Tarot",
+        title: "Túi đựng Tarot màu xanh",
         price: '50000',
         image01: product_14_image_01,
         image02: product_14_image_02,
         categorySlug: "phu-kien-tarot",
-        slug: "tui-dung-tarot",
+        slug: "tui-dung-tarot-xanh",
+        description: "Nếu bạn đã từng sở hữu hoặc mê đắm say bộ bài Tarot of Jane Austen thì lần này, bạn vẫn sẽ được bước vào thế giới tiểu thuyết tình yêu của Jane Austen nhưng với một phiên bản hoàn toàn khác, A Jane Austen Tarot Deck. Có lẽ nếu áp dụng hệ thống Tarot thông thường thì bộ bài sẽ không có điểm gì thú vị, vì vậy Jacqui Oakley đã tự thiết kế một hệ thống dựa trên nền của bài tây (hoặc Lenormand) nhưng vẫn mang ý nghĩa của Tarot. Mỗi con số, mỗi ký hiệu sẽ đại diện cho một lá bài Tarot nào đó, những lá hoàng gia sẽ là một nhân vật tiểu thuyết của Jane Austen, như Elizabeth Bennet, Mr. Darcy, Elinor Dashwood. Đặc biệt hơn nữa, chính hình ảnh Jane Austen sẽ đại diện cho lá bài Magician cũng là người đem đến ý tưởng này đến cho tác giả bộ bài thực hiện được chúng. Bộ bài  A Jane Austen Tarot Deck rất phù hợp để tiên tri, định hướng và tìm kiếm lời khuyên dành cho chuyện tình cảm và các mối quan hệ.",
+    },
+    // 3 product slider
+    {
+        title: "A Jane Austen Tarot Deck",
+        price: '950000',
+        image01: product_15_image_01,
+        image02: product_15_image_02,
+        categorySlug: "bai-tarot",
+        slug: "jane-austen-tarot-deck",
+        description: "Nếu bạn đã từng sở hữu hoặc mê đắm say bộ bài Tarot of Jane Austen thì lần này, bạn vẫn sẽ được bước vào thế giới tiểu thuyết tình yêu của Jane Austen nhưng với một phiên bản hoàn toàn khác, A Jane Austen Tarot Deck. Có lẽ nếu áp dụng hệ thống Tarot thông thường thì bộ bài sẽ không có điểm gì thú vị, vì vậy Jacqui Oakley đã tự thiết kế một hệ thống dựa trên nền của bài tây (hoặc Lenormand) nhưng vẫn mang ý nghĩa của Tarot. Mỗi con số, mỗi ký hiệu sẽ đại diện cho một lá bài Tarot nào đó, những lá hoàng gia sẽ là một nhân vật tiểu thuyết của Jane Austen, như Elizabeth Bennet, Mr. Darcy, Elinor Dashwood. Đặc biệt hơn nữa, chính hình ảnh Jane Austen sẽ đại diện cho lá bài Magician cũng là người đem đến ý tưởng này đến cho tác giả bộ bài thực hiện được chúng. Bộ bài  A Jane Austen Tarot Deck rất phù hợp để tiên tri, định hướng và tìm kiếm lời khuyên dành cho chuyện tình cảm và các mối quan hệ.",
+    },
+    {
+        title: "Everyday Tarot",
+        price: '650000',
+        image01: product_16_image_01,
+        image02: product_16_image_02,
+        categorySlug: "sach-tarot",
+        slug: "everyday-tarot",
+        description: "Nếu bạn đã từng sở hữu hoặc mê đắm say bộ bài Tarot of Jane Austen thì lần này, bạn vẫn sẽ được bước vào thế giới tiểu thuyết tình yêu của Jane Austen nhưng với một phiên bản hoàn toàn khác, A Jane Austen Tarot Deck. Có lẽ nếu áp dụng hệ thống Tarot thông thường thì bộ bài sẽ không có điểm gì thú vị, vì vậy Jacqui Oakley đã tự thiết kế một hệ thống dựa trên nền của bài tây (hoặc Lenormand) nhưng vẫn mang ý nghĩa của Tarot. Mỗi con số, mỗi ký hiệu sẽ đại diện cho một lá bài Tarot nào đó, những lá hoàng gia sẽ là một nhân vật tiểu thuyết của Jane Austen, như Elizabeth Bennet, Mr. Darcy, Elinor Dashwood. Đặc biệt hơn nữa, chính hình ảnh Jane Austen sẽ đại diện cho lá bài Magician cũng là người đem đến ý tưởng này đến cho tác giả bộ bài thực hiện được chúng. Bộ bài  A Jane Austen Tarot Deck rất phù hợp để tiên tri, định hướng và tìm kiếm lời khuyên dành cho chuyện tình cảm và các mối quan hệ.",
+    },
+    {
+        title: "Túi đựng Tarot màu đen",
+        price: '50000',
+        image01: product_17_image_01,
+        image02: product_17_image_02,
+        categorySlug: "phu-kien-tarot",
+        slug: "tui-dung-tarot-den",
         description: "Nếu bạn đã từng sở hữu hoặc mê đắm say bộ bài Tarot of Jane Austen thì lần này, bạn vẫn sẽ được bước vào thế giới tiểu thuyết tình yêu của Jane Austen nhưng với một phiên bản hoàn toàn khác, A Jane Austen Tarot Deck. Có lẽ nếu áp dụng hệ thống Tarot thông thường thì bộ bài sẽ không có điểm gì thú vị, vì vậy Jacqui Oakley đã tự thiết kế một hệ thống dựa trên nền của bài tây (hoặc Lenormand) nhưng vẫn mang ý nghĩa của Tarot. Mỗi con số, mỗi ký hiệu sẽ đại diện cho một lá bài Tarot nào đó, những lá hoàng gia sẽ là một nhân vật tiểu thuyết của Jane Austen, như Elizabeth Bennet, Mr. Darcy, Elinor Dashwood. Đặc biệt hơn nữa, chính hình ảnh Jane Austen sẽ đại diện cho lá bài Magician cũng là người đem đến ý tưởng này đến cho tác giả bộ bài thực hiện được chúng. Bộ bài  A Jane Austen Tarot Deck rất phù hợp để tiên tri, định hướng và tìm kiếm lời khuyên dành cho chuyện tình cảm và các mối quan hệ.",
     },
 ]
