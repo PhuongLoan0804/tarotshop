@@ -6,9 +6,11 @@ import Home from '../pages/Home'
 import Catalog from '../pages/Catalog'
 import Cart from '../pages/Cart'
 import Product from '../pages/Product'
+import Contact from '../pages/Contact'
 
 import Login from '../components/Login'
 import Register from '../components/Register'
+
 
 const Routes = () => {
     return (
@@ -16,6 +18,7 @@ const Routes = () => {
             <Route path='/' exact component={Home}/>
             <Route path='/catalog/:slug' component={Product}/>
             <Route path='/catalog' component={Catalog}/>
+            <Route path='/contact' component={Contact}/>    
             <Route path='/cart' component={Cart}/>
             <Route path='/login' component={Login}/>
             <Route path='/register' component={Register}/>

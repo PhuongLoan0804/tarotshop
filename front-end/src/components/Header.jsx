@@ -82,7 +82,7 @@ const Header = () => {
                         </div>
                         <div className="header__menu__right">
                             <div className="header__menu__item header__menu__right__item">
-                                <i class='bx bx-search-alt'></i>
+                                <i className='bx bx-search-alt'></i>
                             </div>
                             <div className="header__menu__item header__menu__right__item">
                                 <Link to="/cart">
