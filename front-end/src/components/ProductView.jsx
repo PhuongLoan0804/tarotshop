@@ -115,13 +115,13 @@ const ProductView = props => {
                         </div>
                         <div className="product__info__item__quantity">
                             <div className="product__info__item__quantity__btn" onClick={()=>updateQuantity('minus')}>
-                            <i class='bx bx-minus'></i>   
+                            <i className='bx bx-minus'></i>   
                             </div>
                             <div className="product__info__item__quantity__input">
                                 {quantity}
                             </div>
                             <div className="product__info__item__quantity__btn" onClick={()=>updateQuantity('plus')}>
-                            <i class='bx bx-plus' ></i>   
+                            <i className='bx bx-plus' ></i>   
                             </div>
                         </div>
                     </div>

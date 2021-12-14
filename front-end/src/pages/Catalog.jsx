@@ -81,7 +81,7 @@ const Catalog = () => {
             <div className="catalog">
                 <div className="catalog__filter" ref={filterRef}>
                     <div className="catalog__filter__close" onClick={()=>showHideFilter()}>
-                        <i class='bx bx-chevrons-left'></i>
+                        <i className='bx bx-chevrons-left'></i>
                     </div>
                     <div className="catalog__filter__widget">
                         <div className="catalog__filter__widget__title">
