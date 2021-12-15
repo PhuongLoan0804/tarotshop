@@ -59,7 +59,7 @@ const logoutAll = async(req, res) => {
 }
 
 const getMe = async(req, res) => {
-    res.status(200).send(req.user)
+    res.status(200).send({ user: req.user, token: req.token, isOk: true })
 }
 
 const updateUser = async(req, res) => {

@@ -7,12 +7,10 @@ router.post('/users', userController.createUser)
 router.post('/users/login', userController.loginUser)
 router.post('/users/logout', auth, userController.logoutUser)
 router.post('/users/logoutall', auth, userController.logoutAll)
-router.post('/check-old-password', auth, userController.checkOldPassword)
-
 router.get('/users/me', auth, userController.getMe)
-
 router.patch('/users/me', auth, userController.updateUser)
-
 router.delete('/users/me', auth, userController.deleteUser)
+
+router.post('/check-old-password', auth, userController.checkOldPassword)
 
 module.exports = router

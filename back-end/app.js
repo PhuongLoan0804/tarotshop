@@ -1,6 +1,6 @@
 require('./database/database')
-
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 const usersRoute = require('./routes/user')
 
@@ -13,7 +13,13 @@ app.use(
         origin: process.env.FRONT_END
     })
 )
-
+app.use(cookieParser())
+app.use(
+    cors({
+        credentials: true,
+        origin: process.env.FRONT_END
+    })
+)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
