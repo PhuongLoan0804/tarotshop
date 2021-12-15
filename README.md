@@ -3,9 +3,9 @@
 # To do
 
 - [X] Handle `xem-chi-tiet` button
-- [ ] Accessories page
-- [ ] Contact page
-- [ ] Search
+- [X] Contact page
+- [ ] Price filter
+- [X] Search
 
 # Features
 

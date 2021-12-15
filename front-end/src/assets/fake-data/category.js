@@ -8,8 +8,12 @@ const category = [
         categorySlug: "bai-oracle"
     },
     {
-        display: "Sách-Tarot",
+        display: "Sách Tarot",
         categorySlug: "sach-tarot"
+    },
+    {
+        display: "Phụ kiện",
+        categorySlug: "phu-kien-tarot"
     }
 ]
 

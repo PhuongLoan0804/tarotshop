@@ -5,6 +5,27 @@
         flex-direction: column;
     }
 
+    &__search{
+        width: 100%;
+        margin-bottom: 10px;
+
+        input{
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid grey;
+            float: left;
+            width: 80%;
+            // background: #f1f1f1;
+            outline: none;
+            text-align: center;
+        }
+        i{
+            padding: 10px;
+            position: absolute;
+            font-size: 1.5rem;
+        }
+    }
+
     &__filter{
         width: 20%;
 
@@ -31,6 +52,8 @@
         }
 
         &__widget{
+            display: grid;
+
             &__title{
                 font-size: 1.25rem;
                 font-weight: 500;
@@ -72,5 +95,11 @@
             display: block;
             margin-top: 2rem;
         }
+    }
+
+    h1{
+        font-size: 2rem;
+        color: #4A403A;
+        margin-left: 20px;
     }
 }

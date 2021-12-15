@@ -23,6 +23,28 @@ const Catalog = () => {
 
     const [filter, setFilter] = useState(initFilter)
 
+    const [search, setSearch] = useState("")
+
+    const handleChange = value => {
+        setSearch(value)
+        filterData(value)
+    }
+
+    const filterData = value => {
+        const lowerCaseValue = value.toLowerCase().trim()
+        if (!lowerCaseValue){
+            setProducts(productList)
+        }
+        else {
+            const filteredData = productList.filter(item => {
+                return Object.keys(item).some(key => {
+                    return item[key].toString().toLowerCase().includes(lowerCaseValue)
+                })
+            })
+            setProducts(filteredData)
+        }
+    }
+
     const filterSelect = (type, checked, item) => {
         if (checked){
             switch(type) {
@@ -84,6 +106,16 @@ const Catalog = () => {
                         <i className='bx bx-chevrons-left'></i>
                     </div>
                     <div className="catalog__filter__widget">
+                        <div className="catalog__search">
+                            <i className='bx bx-search'></i>
+                            <input 
+                                className='prompt' 
+                                type="text" 
+                                placeholder='Tìm kiếm...'
+                                value={search}
+                                onChange={e => handleChange(e.target.value)}
+                            />
+                        </div>
                         <div className="catalog__filter__widget__title">
                             danh mục sản phẩm
                         </div>
@@ -146,6 +178,9 @@ const Catalog = () => {
                                     slug={item.slug}
                                 />
                             ))
+                        }
+                        {
+                            products.length === 0 && <h1>Không tìm thấy kết quả nào!</h1>
                         }
                     </Grid>
                 </div>
