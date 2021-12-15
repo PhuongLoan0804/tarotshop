@@ -11,9 +11,9 @@
 
 ### Features
 
-- [ ] Login
+- [x] Login
 - [ ] Logout
-- [ ] Sign up
+- [x] Sign up
 - [ ] Bought history
   - [ ] Logged in user can use this feature
 - [ ] Buy things
