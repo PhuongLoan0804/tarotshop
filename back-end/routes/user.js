@@ -7,14 +7,13 @@ const User = require('../models/Users/User')
 router.post('/users', async(req, res) => {
         try {
             const user = new User(req.body)
-            console.log(user)
             await user.save()
 
             const token = await user.generateAuthToken()
-
             res.status(201).send({
                 token,
-                owner: user._id
+                owner: user._id,
+                isOk: true
             })
 
         } catch (e) {
@@ -30,7 +29,8 @@ router.post('/users/login', async(req, res) => {
 
             res.status(200).send({
                 token,
-                owner: user._id
+                owner: user._id,
+                isOk: true
             })
 
         } catch (e) {
