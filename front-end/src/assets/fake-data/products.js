@@ -56,7 +56,7 @@ const products = [
     {
         title: "The Antique Anatomy Tarot",
         price: '750000',
-        image01: product_01_image_01,
+        image01: "https://media-cdn.laodong.vn/storage/newsportal/2020/3/27/793830/Meo-Mac-Covid-19.jpg",
         image02: product_01_image_02,
         categorySlug: "bai-tarot",
         slug: "the-antique-anatomy-tarot",
