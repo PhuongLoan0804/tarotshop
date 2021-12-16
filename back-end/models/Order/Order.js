@@ -15,6 +15,7 @@ const ordersSchema = new mongoose.Schema({
     township: String,
     street: String,
   },
+  phoneNumber: String,
 })
 
 const Order = new mongoose.model("Order", ordersSchema)
