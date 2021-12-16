@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react'
+import 'rc-slider/assets/index.css'
 
 import Helmet from '../components/Helmet'
 import Grid from '../components/Grid'
@@ -9,6 +10,8 @@ import Button from '../components/Button'
 import productData from '../assets/fake-data/products'
 import category from '../assets/fake-data/category'
 import prices from '../assets/fake-data/product-price'
+
+
 
 const Catalog = () => {
 
@@ -30,6 +33,7 @@ const Catalog = () => {
         filterData(value)
     }
 
+    // search
     const filterData = value => {
         const lowerCaseValue = value.toLowerCase().trim()
         if (!lowerCaseValue){
@@ -45,6 +49,7 @@ const Catalog = () => {
         }
     }
 
+    // filter category
     const filterSelect = (type, checked, item) => {
         if (checked){
             switch(type) {
