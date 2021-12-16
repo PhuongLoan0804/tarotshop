@@ -4,6 +4,7 @@ import emailjs from "emailjs-com"
 import Helmet from "../components/Helmet"
 import Grid from "../components/Grid"
 import Button from "../components/Button"
+import Alert from "../components/Alert"
 
 const Contact = (props) => {
   const initialState = {
@@ -47,7 +48,12 @@ const Contact = (props) => {
             Vui lòng điền vào biểu mẫu bên dưới để gửi email cho chúng tôi và
             chúng tôi sẽ liên hệ lại với bạn trong thời gian sớm nhất.
           </p>
-          {status && renderAlert()}
+          {status && (
+            <Alert
+              className='alert'
+              message='Lời nhắn của bạn đã được gửi đi thành công!!!'
+            />
+          )}
         </div>
         {/* FORM CONTACT */}
         <form name='sentMessage' onSubmit={handleSubmit}>
@@ -124,11 +130,5 @@ const Contact = (props) => {
     </Helmet>
   )
 }
-
-const renderAlert = () => (
-  <div className='alert'>
-    <p>Lời nhắn của bạn đã được gửi đi thành công!!!</p>
-  </div>
-)
 
 export default Contact

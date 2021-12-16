@@ -4,6 +4,7 @@ import axios from "axios"
 
 import Helmet from "./Helmet"
 import Button from "./Button"
+import Alert from "./Alert"
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -17,12 +18,6 @@ const Login = () => {
     const { name, value } = e.target
     setUser({ ...user, [name]: value })
   }
-
-  const renderAlert = () => (
-    <div className='bad-login'>
-      <p>Xin kiểm tra lại thông tin đăng nhập!</p>
-    </div>
-  )
 
   const loginSubmit = async (e) => {
     e.preventDefault()
@@ -48,7 +43,12 @@ const Login = () => {
   }
   return (
     <Helmet title='Đăng nhập'>
-      {isBadCre && renderAlert()}
+      {isBadCre && (
+        <Alert
+          className='bad-login'
+          message='Xin kiểm tra lại thông tin đăng nhập!'
+        />
+      )}
       <div className='login-page'>
         <form onSubmit={loginSubmit}>
           <h2>đăng nhập</h2>

@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import axios from "axios"
 // logo
 import logo from "../assets/images/LonTonShop.png"
 import { useState } from "react"
 
+import checkValidCookie from "../utils/checkValidCookie"
 // path menu
 const mainNav = [
   {
@@ -46,17 +46,8 @@ const Header = () => {
 
     // check if there is valid a cookie
     const getUser = async () => {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${document.cookie.split("=")[1]}`,
-        },
-      }
-
-      const user = await axios.get(
-        `${process.env.REACT_APP_BACK_END_URL}/users/me`,
-        config
-      )
-      if (user.data.isOk) setIsLogged(true)
+      const isLogged = await checkValidCookie()
+      setIsLogged(isLogged)
     }
 
     getUser()

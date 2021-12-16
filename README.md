@@ -2,10 +2,10 @@
 
 # To do
 
-- [X] Handle `xem-chi-tiet` button
-- [X] Contact page
+- [x] Handle `xem-chi-tiet` button
+- [x] Contact page
 - [ ] Price filter
-- [X] Search
+- [x] Search
 
 ## Users
 
@@ -17,7 +17,7 @@
 - [ ] Bought history
   - [ ] Logged in user can use this feature
 - [ ] Buy things
-  - [ ] Logged in user can use this feature
+  - [x] Logged in user can use this feature
 
 ## Administrators
 
