@@ -41,7 +41,6 @@ const Cart = () => {
 
   const handleOrder = async () => {
     const isLogged = await checkValidCookie()
-    console.log(isLogged)
     setIsLogged(isLogged)
   }
 
