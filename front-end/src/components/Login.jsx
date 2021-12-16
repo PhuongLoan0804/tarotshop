@@ -4,12 +4,15 @@ import axios from "axios"
 
 import Helmet from "./Helmet"
 import Button from "./Button"
+import Alert from "./Alert"
 
 const Login = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   })
+
+  const [isBadCre, setIsBadCre] = useState(false)
 
   const onChangeInput = (e) => {
     const { name, value } = e.target
@@ -30,11 +33,22 @@ const Login = () => {
         window.location.href = "/"
       }
     } catch (err) {
-      alert(err.response.data.msg)
+      setIsBadCre(true)
+      setUser({
+        email: "",
+        password: "",
+      })
+      console.log(err)
     }
   }
   return (
     <Helmet title='Đăng nhập'>
+      {isBadCre && (
+        <Alert
+          className='bad-login'
+          message='Xin kiểm tra lại thông tin đăng nhập!'
+        />
+      )}
       <div className='login-page'>
         <form onSubmit={loginSubmit}>
           <h2>đăng nhập</h2>
@@ -45,6 +59,7 @@ const Login = () => {
             placeholder='Email'
             required
             onChange={onChangeInput}
+            value={user.email}
           />
           <label htmlFor='password'>Password</label>
           <input
@@ -53,6 +68,7 @@ const Login = () => {
             placeholder='Password'
             required
             onChange={onChangeInput}
+            value={user.password}
           />
           <div className='row'>
             <Button size='sm' type='submit'>
