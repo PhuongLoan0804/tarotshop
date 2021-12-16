@@ -57,6 +57,7 @@ const ProductView = (props) => {
         slug: product.slug,
         price: product.price,
         quantity: quantity,
+        id: product.id,
       }
       if (dispatch(addItem(newItem))) {
         setIsAddedToCart((pre) => !pre)

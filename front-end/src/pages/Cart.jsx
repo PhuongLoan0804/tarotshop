@@ -6,12 +6,13 @@ import { Link } from "react-router-dom"
 import Helmet from "../components/Helmet"
 import CartItem from "../components/CartItem"
 import Button from "../components/Button"
+import Alert from "../components/Alert"
 
 import productData from "../assets/fake-data/products"
-import numberWithCommas from "../utils/numberWithCommas"
 
+import numberWithCommas from "../utils/numberWithCommas"
 import checkValidCookie from "../utils/checkValidCookie"
-import Alert from "../components/Alert"
+import { makePostRequeset } from "../utils/makeRequest"
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
@@ -42,6 +43,11 @@ const Cart = () => {
   const handleOrder = async () => {
     const isLogged = await checkValidCookie()
     setIsLogged(isLogged)
+    makePostRequeset(`${process.env.REACT_APP_BACK_END_URL}/orders`, {
+      cartItems,
+      totalProducts,
+      totalPrice,
+    })
   }
 
   return (
