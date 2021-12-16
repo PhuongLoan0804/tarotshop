@@ -11,10 +11,18 @@ const Login = () => {
     password: "",
   })
 
+  const [isBadCre, setIsBadCre] = useState(false)
+
   const onChangeInput = (e) => {
     const { name, value } = e.target
     setUser({ ...user, [name]: value })
   }
+
+  const renderAlert = () => (
+    <div className='bad-login'>
+      <p>Xin kiểm tra lại thông tin đăng nhập!</p>
+    </div>
+  )
 
   const loginSubmit = async (e) => {
     e.preventDefault()
@@ -30,11 +38,17 @@ const Login = () => {
         window.location.href = "/"
       }
     } catch (err) {
-      alert(err.response.data.msg)
+      setIsBadCre(true)
+      setUser({
+        email: "",
+        password: "",
+      })
+      console.log(err)
     }
   }
   return (
     <Helmet title='Đăng nhập'>
+      {isBadCre && renderAlert()}
       <div className='login-page'>
         <form onSubmit={loginSubmit}>
           <h2>đăng nhập</h2>
@@ -45,6 +59,7 @@ const Login = () => {
             placeholder='Email'
             required
             onChange={onChangeInput}
+            value={user.email}
           />
           <label htmlFor='password'>Password</label>
           <input
@@ -53,6 +68,7 @@ const Login = () => {
             placeholder='Password'
             required
             onChange={onChangeInput}
+            value={user.password}
           />
           <div className='row'>
             <Button size='sm' type='submit'>

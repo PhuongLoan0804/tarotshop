@@ -52,13 +52,10 @@ const Header = () => {
         },
       }
 
-      console.log(config)
-
       const user = await axios.get(
         `${process.env.REACT_APP_BACK_END_URL}/users/me`,
         config
       )
-      console.log(user)
       if (user.data.isOk) setIsLogged(true)
     }
 
