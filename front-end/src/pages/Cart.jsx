@@ -65,9 +65,6 @@ const Cart = () => {
             </div>
           </div>
           <div className='cart__info__btn'>
-            <Button size='block' onClick={handleOrder}>
-              Đặt hàng
-            </Button>
             <Link to='/catalog'>
               <Button size='block'>Tiếp tục mua hàng</Button>
             </Link>
@@ -78,6 +75,28 @@ const Cart = () => {
             <CartItem item={item} key={index} />
           ))}
         </div>
+      </div>
+      <div className='order-info'>
+        <div className='order-info__title'>
+          <h1>thông tin giao hàng</h1>
+        </div>
+        <div className='order-info__form'>
+          <div className='form-group'>
+            <label>Họ và tên</label>
+            <input type='text' />
+          </div>
+          <div className='form-group'>
+            <label>Số điện thoại</label>
+            <input type='text' />
+          </div>
+          <div className='form-group'>
+            <label>Địa chỉ</label>
+            <input type='text' />
+          </div>
+        </div>
+        <Button size='block' onClick={handleOrder}>
+          Đặt hàng
+        </Button>
       </div>
     </Helmet>
   )

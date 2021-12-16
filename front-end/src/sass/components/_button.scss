@@ -55,4 +55,14 @@
         width: 100%;
         border-radius: unset;
     }
+
+    &-unset &__txt{
+        background-color: #D3E4CD;
+        color: #000;
+        border-radius: 5px;
+        font-size: 1rem;
+        outline: none;
+        padding: unset;
+        padding: 0.7rem 1.5rem;
+    }
 }
