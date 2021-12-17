@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "Post One",
+      "body": "This is the post body",
+      "publishedAt": "01-11-2021"
+    },
+    {
+      "id": "2",
+      "title": "Post Two",
+      "body": "This is the post body",
+      "publishedAt": "01-11-2021"
+    },
+    {
+      "id": "3",
+      "title": "Post Three",
+      "body": "This is the post body",
+      "publishedAt": "01-11-2021"
+    },
+    {
+      "title": "Post Four",
+      "body": "Test",
+      "publishedAt": "2021-11-02",
+      "id": "UCrN7pe"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "LonTon",
+      "email": "lonton@gmail.com"
+    },
+    {
+      "name": "Hanna",
+      "email": "hanna@gmail.com",
+      "id": "x1oLnLc"
+    }
+  ]
+}
