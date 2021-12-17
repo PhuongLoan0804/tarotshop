@@ -12,8 +12,6 @@ import LocationForm from "../components/LocationForm"
 import productData from "../assets/fake-data/products"
 
 import numberWithCommas from "../utils/numberWithCommas"
-import checkValidCookie from "../utils/checkValidCookie"
-import { makePostRequeset } from "../utils/makeRequest"
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
@@ -42,12 +40,6 @@ const Cart = () => {
       cartItems.reduce((total, item) => total + Number(item.quantity), 0)
     )
   }, [cartItems])
-
-  const handleOnSubmit = async (e) => {
-    e.preventDefault()
-
-    console.log(province)
-  }
 
   return (
     <Helmet title='Giỏ hàng'>
