@@ -1,6 +1,8 @@
 import Helmet from "../components/Helmet"
 import Grid from "../components/Grid"
 import Button from "../components/Button"
+import Modal from "../components/Modal"
+
 import { useState, useEffect } from "react"
 
 import { makeGetRequest } from "../utils/makeRequest"
@@ -11,6 +13,14 @@ const Account = () => {
     email: "",
   }
   const [{ name, email }, setAccount] = useState(initialState)
+
+  const [cart, setCart] = useState({
+    date: "17/12/2021 9:06AM",
+    product: "Đá phong thủy",
+    quantily: "2",
+  })
+
+  const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
     const getUser = async () => {
@@ -55,9 +65,29 @@ const Account = () => {
             <div className='account__cart-title'>
               <h1>lịch sử đơn hàng</h1>
             </div>
+
+            <div className='account__cart-body'>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ngày đặt hàng</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{cart.date}</td>
+                    <td>{cart.product}</td>
+                    <td>{cart.quantily}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </Grid>
       </div>
+      {modalOpen && <Modal closeModal={setModalOpen} />}
     </Helmet>
   )
 }
