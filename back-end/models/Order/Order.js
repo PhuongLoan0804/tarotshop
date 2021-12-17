@@ -9,7 +9,6 @@ const ordersSchema = new mongoose.Schema({
   },
   orderDate: Date,
   quantity: Number,
-  note: String,
   address: {
     provine: String,
     township: String,

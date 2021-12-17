@@ -18,6 +18,8 @@ import { makePostRequeset } from "../utils/makeRequest"
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
 
+  const [province, setProvince] = useState({})
+
   const [cartProducts, setCartProducts] = useState(
     productData.getCartItemsInfo(cartItems)
   )
@@ -41,14 +43,10 @@ const Cart = () => {
     )
   }, [cartItems])
 
-  const handleOrder = async () => {
-    const isLogged = await checkValidCookie()
-    setIsLogged(isLogged)
-    makePostRequeset(`${process.env.REACT_APP_BACK_END_URL}/orders`, {
-      cartItems,
-      totalProducts,
-      totalPrice,
-    })
+  const handleOnSubmit = async (e) => {
+    e.preventDefault()
+
+    console.log(province)
   }
 
   return (
@@ -77,7 +75,11 @@ const Cart = () => {
           ))}
         </div>
       </div>
-      <LocationForm />
+      <LocationForm
+        items={{ cartItems, totalProducts, totalPrice }}
+        setProvince={setProvince}
+        setIsLogged={setIsLogged}
+      />
     </Helmet>
   )
 }

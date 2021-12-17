@@ -1,6 +1,9 @@
 import useLocationForm from "../hooks/useLocationForm"
 import Select from "react-select"
 import Button from "./Button"
+import checkValidCookie from "../utils/checkValidCookie"
+import { makePostRequeset } from "../utils/makeRequest"
+import { useState } from "react"
 
 function LocationForm(props) {
   const { state, onCitySelect, onDistrictSelect, onWardSelect } =
@@ -15,9 +18,36 @@ function LocationForm(props) {
     selectedWard,
   } = state
 
+  const [userInput, setUserInput] = useState({
+    name: "",
+    phoneNumber: "",
+    address: "",
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setUserInput({ ...userInput, [name]: value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    props.setProvince({ selectedCity, selectedDistrict, selectedWard })
+
+    const isLogged = await checkValidCookie()
+    props.setIsLogged(isLogged)
+
+    makePostRequeset(`${process.env.REACT_APP_BACK_END_URL}/orders`, {
+      ...props.items,
+      selectedCity,
+      selectedDistrict,
+      selectedWard,
+      ...userInput,
+    })
+  }
+
   return (
-    <form>
-      <div className=''>
+    <form onSubmit={handleSubmit}>
+      <div>
         <div className='order-info'>
           <div className='order-info__title'>
             <h1>thông tin giao hàng</h1>
@@ -25,15 +55,30 @@ function LocationForm(props) {
           <div className='order-info__form'>
             <div className='form-group'>
               <label>Họ và tên</label>
-              <input type='text' />
+              <input
+                type='text'
+                name='name'
+                value={userInput.name}
+                onChange={handleChange}
+              />
             </div>
             <div className='form-group'>
               <label>Số điện thoại</label>
-              <input type='text' />
+              <input
+                type='tel'
+                name='phoneNumber'
+                value={userInput.phoneNumber}
+                onChange={handleChange}
+              />
             </div>
             <div className='form-group'>
               <label>Địa chỉ</label>
-              <input type='text' />
+              <input
+                type='text'
+                name='address'
+                value={userInput.address}
+                onChange={handleChange}
+              />
             </div>
           </div>
           <div className='form-group'>
@@ -77,7 +122,7 @@ function LocationForm(props) {
               className='width'
             />
           </div>
-          <Button size='block' onClick={props.handleOrder}>
+          <Button size='block' type='submit'>
             Đặt hàng
           </Button>
         </div>

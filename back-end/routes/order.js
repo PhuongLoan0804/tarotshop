@@ -3,6 +3,6 @@ const router = new express.Router()
 const auth = require("../middleware/auth")
 const orderController = require("../controllers/order.controller/order.controller")
 
-router.post("/orders", orderController.createOrder)
+router.post("/orders", auth, orderController.createOrder)
 
 module.exports = router
