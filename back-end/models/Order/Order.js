@@ -10,12 +10,10 @@ const ordersSchema = new mongoose.Schema({
   orderDate: Date,
   totalProducts: Number,
   totalPrice: Number,
-  address: {
-    city: String,
-    district: String,
-    ward: String,
-    detail: String,
-  },
+  city: { value: Number, label: String },
+  district: { value: Number, label: String },
+  ward: { value: Number, label: String },
+  detail: String,
   phoneNumber: String,
 })
 

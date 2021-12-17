@@ -16,7 +16,7 @@ import numberWithCommas from "../utils/numberWithCommas"
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
 
-  const [province, setProvince] = useState({})
+  // const [province, setProvince] = useState({})
 
   const [cartProducts, setCartProducts] = useState(
     productData.getCartItemsInfo(cartItems)
@@ -69,7 +69,7 @@ const Cart = () => {
       </div>
       <LocationForm
         items={{ cartItems, totalProducts, totalPrice }}
-        setProvince={setProvince}
+        // setProvince={setProvince}
         setIsLogged={setIsLogged}
       />
     </Helmet>

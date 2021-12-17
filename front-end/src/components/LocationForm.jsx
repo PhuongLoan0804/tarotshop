@@ -31,7 +31,7 @@ function LocationForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    props.setProvince({ selectedCity, selectedDistrict, selectedWard })
+    // props.setProvince({ selectedCity, selectedDistrict, selectedWard })
 
     const isLogged = await checkValidCookie()
     props.setIsLogged(isLogged)

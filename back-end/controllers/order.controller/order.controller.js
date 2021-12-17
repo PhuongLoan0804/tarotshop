@@ -1,6 +1,6 @@
 const Order = require("../../models/Order/Order")
 
-const createOrder = (req, res) => {
+const createOrder = async (req, res) => {
   const {
     cartItems,
     totalProducts,
@@ -9,25 +9,24 @@ const createOrder = (req, res) => {
     selectedDistrict,
     selectedWard,
     phoneNumber,
-    detailAddress,
+    address,
   } = req.body
 
   const order = new Order({
     products: cartItems,
     owner: req.user._id,
-    orderDate: new Date().toLocaleDateString(),
+    orderDate: Date.now(),
     totalProducts,
     totalPrice,
-    address: {
-      city: selectedCity,
-      district: selectedDistrict,
-      ward: selectedWard,
-      detail: detailAddress,
-    },
+    city: selectedCity,
+    district: selectedDistrict,
+    ward: selectedWard,
+    detail: address,
     phoneNumber,
   })
 
-  console.log(order)
+  await order.save()
+  res.status(201).send()
 }
 
 module.exports = {
