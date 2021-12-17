@@ -1,13 +1,33 @@
 const Order = require("../../models/Order/Order")
 
 const createOrder = (req, res) => {
-  const data = req.body
-  const productIds = data.cartItems.map((item) => item.id)
-  const owner = req.user._id
-  const orderDate = new Date().toLocaleDateString()
-  const quantity = data.quantity
+  const {
+    cartItems,
+    totalProducts,
+    totalPrice,
+    selectedCity,
+    selectedDistrict,
+    selectedWard,
+    phoneNumber,
+    detailAddress,
+  } = req.body
 
-  console.log(req.body)
+  const order = new Order({
+    products: cartItems,
+    owner: req.user._id,
+    orderDate: new Date().toLocaleDateString(),
+    totalProducts,
+    totalPrice,
+    address: {
+      city: selectedCity,
+      district: selectedDistrict,
+      ward: selectedWard,
+      detail: detailAddress,
+    },
+    phoneNumber,
+  })
+
+  console.log(order)
 }
 
 module.exports = {

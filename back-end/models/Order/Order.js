@@ -1,18 +1,20 @@
 const mongoose = require("mongoose")
 
 const ordersSchema = new mongoose.Schema({
-  product: [mongoose.Types.ObjectId],
+  products: [{ productId: mongoose.Types.ObjectId, quantity: Number }],
   owner: {
     type: mongoose.Types.ObjectId,
     ref: "User",
     required: true,
   },
   orderDate: Date,
-  quantity: Number,
+  totalProducts: Number,
+  totalPrice: Number,
   address: {
-    provine: String,
-    township: String,
-    street: String,
+    city: String,
+    district: String,
+    ward: String,
+    detail: String,
   },
   phoneNumber: String,
 })
