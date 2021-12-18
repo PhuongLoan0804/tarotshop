@@ -2,6 +2,7 @@ import Helmet from "../components/Helmet"
 import Grid from "../components/Grid"
 import Button from "../components/Button"
 import Modal from "../components/Modal"
+import OrderModal from "../components/OrderModal"
 
 import { useState, useEffect } from "react"
 
@@ -18,6 +19,14 @@ const Account = () => {
   const [carts, setCart] = useState([])
 
   const [modalOpen, setModalOpen] = useState(false)
+  const [orderModal, setOrderModal] = useState(false)
+
+  const handleEditButton = () => setModalOpen(true)
+
+  const handleShowOrderDetail = (e) => {
+    e.preventDefault()
+    setOrderModal(true)
+  }
 
   useEffect(() => {
     const getUser = async () => {
@@ -63,7 +72,9 @@ const Account = () => {
                 <p>{email}</p>
               </div>
               <div className='btn-group'>
-                <Button size='sm'>Sửa</Button>
+                <Button size='sm' onClick={handleEditButton}>
+                  Sửa
+                </Button>
               </div>
             </div>
           </div>
@@ -89,6 +100,7 @@ const Account = () => {
                         <td>
                           <a
                             href={`${process.env.REACT_APP_BACK_END_URL}/orders/${cart._id}`}
+                            onClick={handleShowOrderDetail}
                           >
                             {cart._id.toString().substring(12, 24)}
                           </a>
@@ -106,6 +118,7 @@ const Account = () => {
         </Grid>
       </div>
       {modalOpen && <Modal closeModal={setModalOpen} />}
+      {orderModal && <OrderModal closeModal={setOrderModal} />}
     </Helmet>
   )
 }

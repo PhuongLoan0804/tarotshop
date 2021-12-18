@@ -35,7 +35,9 @@ const getOrders = async (req, res) => {
   res.send(order)
 }
 
-const getOrderById = async (req, res) => {}
+const getOrderById = async (req, res) => {
+  const order = await Order.get
+}
 
 module.exports = {
   createOrder,
