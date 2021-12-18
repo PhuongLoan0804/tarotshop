@@ -16,7 +16,7 @@ import CategoryEdit from "./components/CategoryEdit"
 
 function App() {
   return (
-    <Admin dataProvider={restProvider("http://localhost:3001")}>
+    <Admin dataProvider={restProvider("http://localhost:8080")}>
       <Resource
         name='products'
         list={ProductList}

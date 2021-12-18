@@ -1,4 +1,5 @@
 const Order = require("../../models/Order/Order")
+const mongoose = require("mongoose")
 
 const createOrder = async (req, res) => {
   const {
@@ -47,8 +48,58 @@ const getOrderById = async (req, res) => {
   res.send(order)
 }
 
+const deleteOrder = async (req, res) => {
+  const id = req.params.id
+  const order = await Order.findOneAndDelete({
+    _id: new mongoose.Types.ObjectId(id),
+  })
+
+  if (!order) {
+    return res.status(404).send("Not found this id")
+  }
+
+  res.status(200).send(`Deleted order ${id}`)
+}
+
+const updateOrder = async (req, res) => {
+  const newValue = req.body
+  const orderId = req.params.id
+  const keys = Object.keys(newValue)
+  const check = keys.every((key) => {
+    return [
+      "products",
+      "city",
+      "district",
+      "ward",
+      "detail",
+      "phoneNumber",
+    ].includes(key)
+  })
+  if (check) {
+    const order = await Order.findOne({ _id: mongoose.Types.ObjectId(orderId) })
+
+    try {
+      keys.forEach((key) => {
+        order[key] = newValue[key]
+      })
+      const updatedOrder = await order.save()
+      res.status(200).send(updatedOrder)
+    } catch (e) {
+      res.status(500).send(e)
+    }
+  } else {
+    res
+      .status(400)
+      .send(
+        "accepted keys: products, city, district, ward, detail, phoneNumber"
+      )
+  }
+}
+
 module.exports = {
   createOrder,
   getOrders,
   getOrderById,
+  deleteOrder,
+  updateOrder,
 }

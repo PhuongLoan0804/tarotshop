@@ -4,8 +4,8 @@
       "id": "1",
       "title": "the face to face tarot",
       "price": "450000",
-      "image0":"",
-      "image1":"",
+      "image0": "",
+      "image1": "",
       "category": "Bài Tarot",
       "description": "Đây là mô tả"
     },
@@ -13,10 +13,16 @@
       "id": "2",
       "title": "Túi đựng tarot màu xanh",
       "price": "200000",
-      "image0":"",
-      "image1":"",
+      "image0": "",
+      "image1": "",
       "category": "Phụ kiện Tarot",
       "description": "Đây là mô tả"
+    },
+    {
+      "title": "cxc",
+      "price": 1,
+      "description": "cxc",
+      "id": "1joV3it"
     }
   ],
   "users": [
@@ -31,6 +37,12 @@
       "email": "hanna@gmail.com",
       "id": "x1oLnLc",
       "password": "123123"
+    },
+    {
+      "name": "bui long",
+      "email": "test@gmail.com",
+      "password": "11011010",
+      "id": "wj3sZL6"
     }
   ]
 }
