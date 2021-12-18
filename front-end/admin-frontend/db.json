@@ -1,40 +1,36 @@
 {
-  "posts": [
+  "products": [
     {
       "id": "1",
-      "title": "Post One",
-      "body": "This is the post body",
-      "publishedAt": "01-11-2021"
+      "title": "the face to face tarot",
+      "price": "450000",
+      "image0":"",
+      "image1":"",
+      "category": "Bài Tarot",
+      "description": "Đây là mô tả"
     },
     {
       "id": "2",
-      "title": "Post Two",
-      "body": "This is the post body",
-      "publishedAt": "01-11-2021"
-    },
-    {
-      "id": "3",
-      "title": "Post Three",
-      "body": "This is the post body",
-      "publishedAt": "01-11-2021"
-    },
-    {
-      "title": "Post Four",
-      "body": "Test",
-      "publishedAt": "2021-11-02",
-      "id": "UCrN7pe"
+      "title": "Túi đựng tarot màu xanh",
+      "price": "200000",
+      "image0":"",
+      "image1":"",
+      "category": "Phụ kiện Tarot",
+      "description": "Đây là mô tả"
     }
   ],
   "users": [
     {
       "id": "1",
       "name": "LonTon",
-      "email": "lonton@gmail.com"
+      "email": "lonton@gmail.com",
+      "password": "123123"
     },
     {
       "name": "Hanna",
       "email": "hanna@gmail.com",
-      "id": "x1oLnLc"
+      "id": "x1oLnLc",
+      "password": "123123"
     }
   ]
 }
