@@ -36,10 +36,19 @@ const getOrders = async (req, res) => {
 }
 
 const getOrderById = async (req, res) => {
-  const order = await Order.get
+  const id = req.params.id
+  const order = await Order.findById(id)
+
+  const productsId = order.products.map((product) => product._id)
+  console.log(productsId)
+
+  // todo : return array of product + quantity + total price
+
+  res.send(order)
 }
 
 module.exports = {
   createOrder,
   getOrders,
+  getOrderById,
 }

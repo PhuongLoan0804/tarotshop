@@ -30,7 +30,7 @@ const Login = () => {
       )
       if (respone.data.isOk) {
         document.cookie = `userSession=${respone.data.token}`
-        window.location.href = "/"
+        window.location.href = "/me"
       }
     } catch (err) {
       setIsBadCre(true)

@@ -20,12 +20,14 @@ const Account = () => {
 
   const [modalOpen, setModalOpen] = useState(false)
   const [orderModal, setOrderModal] = useState(false)
+  const [orderId, setOrderId] = useState("")
 
   const handleEditButton = () => setModalOpen(true)
 
-  const handleShowOrderDetail = (e) => {
+  const handleShowOrderDetail = async (e) => {
     e.preventDefault()
     setOrderModal(true)
+    setOrderId(e.target.attributes.getNamedItem("orderid").value)
   }
 
   useEffect(() => {
@@ -41,7 +43,6 @@ const Account = () => {
 
         setCart(orders)
 
-        console.log(orders)
         setAccount({
           name: user.user.name,
           email: user.user.email,
@@ -52,7 +53,7 @@ const Account = () => {
       }
     }
     getUser()
-  }, [name, email])
+  }, [name, email, orderId])
 
   return (
     <Helmet title='Tài khoản'>
@@ -98,12 +99,9 @@ const Account = () => {
                     return (
                       <tr key={cart._id}>
                         <td>
-                          <a
-                            href={`${process.env.REACT_APP_BACK_END_URL}/orders/${cart._id}`}
-                            onClick={handleShowOrderDetail}
-                          >
+                          <p onClick={handleShowOrderDetail} orderid={cart._id}>
                             {cart._id.toString().substring(12, 24)}
-                          </a>
+                          </p>
                         </td>
                         <td>{new Date(cart.orderDate).toLocaleString()}</td>
                         <td>Đơn hàng này có {cart.totalProducts} sản phẩm</td>
@@ -118,7 +116,9 @@ const Account = () => {
         </Grid>
       </div>
       {modalOpen && <Modal closeModal={setModalOpen} />}
-      {orderModal && <OrderModal closeModal={setOrderModal} />}
+      {orderModal && (
+        <OrderModal closeModal={setOrderModal} orderId={orderId} />
+      )}
     </Helmet>
   )
 }
