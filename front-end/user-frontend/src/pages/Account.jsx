@@ -6,6 +6,7 @@ import Modal from "../components/Modal"
 import { useState, useEffect } from "react"
 
 import { makeGetRequest } from "../utils/makeRequest"
+import numberWithCommas from "../utils/numberWithCommas"
 
 const Account = () => {
   const initialState = {
@@ -14,11 +15,7 @@ const Account = () => {
   }
   const [{ name, email }, setAccount] = useState(initialState)
 
-  const [cart, setCart] = useState({
-    date: "17/12/2021 9:06AM",
-    product: "Đá phong thủy",
-    quantily: "2",
-  })
+  const [carts, setCart] = useState([])
 
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -28,11 +25,20 @@ const Account = () => {
         const user = await makeGetRequest(
           `${process.env.REACT_APP_BACK_END_URL}/users/me`
         )
+
+        const orders = await makeGetRequest(
+          `${process.env.REACT_APP_BACK_END_URL}/orders`
+        )
+
+        setCart(orders)
+
+        console.log(orders)
         setAccount({
           name: user.user.name,
           email: user.user.email,
         })
       } catch (error) {
+        console.log(error)
         window.location.href = "/login"
       }
     }
@@ -70,17 +76,29 @@ const Account = () => {
               <table>
                 <thead>
                   <tr>
-                    <th>Ngày đặt hàng</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Số lượng</th>
+                    <th>Mã đơn hàng</th>
+                    <th>Ngày mua</th>
+                    <th>Sản phẩm</th>
+                    <th>Tổng tiền</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>{cart.date}</td>
-                    <td>{cart.product}</td>
-                    <td>{cart.quantily}</td>
-                  </tr>
+                  {carts.map((cart) => {
+                    return (
+                      <tr key={cart._id}>
+                        <td>
+                          <a
+                            href={`${process.env.REACT_APP_BACK_END_URL}/orders/${cart._id}`}
+                          >
+                            {cart._id.toString().substring(12, 24)}
+                          </a>
+                        </td>
+                        <td>{new Date(cart.orderDate).toLocaleString()}</td>
+                        <td>Đơn hàng này có {cart.totalProducts} sản phẩm</td>
+                        <td>{numberWithCommas(cart.totalPrice)}</td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             </div>

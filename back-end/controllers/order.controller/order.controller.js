@@ -29,6 +29,15 @@ const createOrder = async (req, res) => {
   res.status(201).send()
 }
 
+const getOrders = async (req, res) => {
+  const user = req.user
+  const order = await Order.find({ owner: user._id })
+  res.send(order)
+}
+
+const getOrderById = async (req, res) => {}
+
 module.exports = {
   createOrder,
+  getOrders,
 }
