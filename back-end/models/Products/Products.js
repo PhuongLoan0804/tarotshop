@@ -12,6 +12,6 @@ const productSchema = new mongoose.Schema({
   clickedTimes: Number,
 })
 
-const Product = mongoose.model(productSchema)
+const Product = mongoose.model("Product", productSchema)
 
 module.exports = Product

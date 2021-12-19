@@ -1,9 +1,15 @@
 const Product = require("../../models/Products/Products")
-const mongoose = require("mongoose")
+const Category = require("../../models/Products/Category")
 
 const createProduct = async (req, res) => {
   const { title, price, image0, image1, categorySlug, slug, description } =
     req.body
+
+  const category = await Category.find({ categorySlug })
+
+  if (!category) {
+    return res.status(404).send({ message: "Not found this category" })
+  }
 
   const product = new Product({
     title,
@@ -47,7 +53,15 @@ const updateProduct = async (req, res) => {
   if (!product) res.status(404).send({ message: "Not found this product" })
 
   const newValue = req.body
-  const orderId = req.params.id
+
+  const categorySlug = newValue.categorySlug
+
+  if (categorySlug) {
+    const category = await Category.findOne({ categorySlug })
+    if (!category)
+      return res.status(404).send({ message: "Not found this category" })
+  }
+
   const keys = Object.keys(newValue)
   const check = keys.every((key) => {
     return [
@@ -61,9 +75,7 @@ const updateProduct = async (req, res) => {
     ].includes(key)
   })
   if (check) {
-    const product = await Order.findOne({
-      _id: mongoose.Types.ObjectId(orderId),
-    })
+    const product = await Product.findById(id)
 
     try {
       keys.forEach((key) => {
@@ -93,10 +105,24 @@ const deleteProduct = async (req, res) => {
     })
 }
 
+const getProductByCategorySlug = async (req, res) => {
+  const categorySlug = req.query.categorySlug
+  const category = await Category.findOne({ categorySlug })
+
+  if (!category) {
+    return res.status(404).send({ message: "Not found this category" })
+  }
+
+  const products = await Product.find({ categorySlug })
+
+  res.status(200).send(products)
+}
+
 module.exports = {
   createProduct,
   getProductsById,
   getAllProducts,
   updateProduct,
   deleteProduct,
+  getProductByCategorySlug,
 }

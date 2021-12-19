@@ -76,7 +76,7 @@ const updateOrder = async (req, res) => {
     ].includes(key)
   })
   if (check) {
-    const order = await Order.findOne({ _id: mongoose.Types.ObjectId(orderId) })
+    const order = Order.findById(orderId)
 
     try {
       keys.forEach((key) => {
@@ -88,11 +88,7 @@ const updateOrder = async (req, res) => {
       res.status(500).send(e)
     }
   } else {
-    res
-      .status(400)
-      .send(
-        "accepted keys: products, city, district, ward, detail, phoneNumber"
-      )
+    res.status(400).send("Not accept strange keys")
   }
 }
 
