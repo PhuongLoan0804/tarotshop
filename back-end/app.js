@@ -10,17 +10,25 @@ const categoriesRoute = require("./routes/categories")
 const express = require("express")
 const app = express()
 
-app.use(
-  cors({
-    credentials: true,
-    origin: process.env.FRONT_END,
-  })
-)
+const whiteList = ["http://localhost:3000", "http://localhost:3001"]
+
+const corsOptions = {
+  credentials: true,
+  origin: function (origin, callback) {
+    if (whiteList.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+}
+
+app.use(cors(corsOptions))
 app.use(cookieParser())
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONT_END,
+    origin: "*",
   })
 )
 app.use(express.json())
