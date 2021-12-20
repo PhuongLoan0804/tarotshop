@@ -8,6 +8,6 @@ router.get("/products/all", productsController.getAllProducts)
 router.get("/products/:id", productsController.getProductsById)
 router.get("/products", productsController.getProductByCategorySlug)
 router.patch("/products/:id", auth, productsController.updateProduct)
-router.delete("/products", auth, productsController.deleteProduct)
+router.delete("/products/:id", auth, productsController.deleteProduct)
 
 module.exports = router

@@ -1,33 +1,61 @@
-import "./productList.css";
-import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
-import { productRows } from "../../dummyData";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import "./productList.css"
+import { DataGrid } from "@material-ui/data-grid"
+import { DeleteOutline } from "@material-ui/icons"
+import { Link } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { makeGetRequest, makeDeleteRequest } from "../../utils/makeRequest"
 
 export default function ProductList() {
-  const [data, setData] = useState(productRows);
+  const [data, setData] = useState([])
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+  useEffect(() => {
+    const getAllProducts = async () => {
+      const products = await makeGetRequest(
+        `${process.env.REACT_APP_BACK_END_URL}/products/all`
+      )
+
+      setData(
+        products.map((product) => {
+          return { ...product, id: product._id }
+        })
+      )
+    }
+
+    getAllProducts()
+  }, [])
+
+  const handleDelete = async (id) => {
+    await makeDeleteRequest(
+      `${process.env.REACT_APP_BACK_END_URL}/products/${id}`
+    )
+
+    const products = await makeGetRequest(
+      `${process.env.REACT_APP_BACK_END_URL}/products/all`
+    )
+    setData(
+      products.map((product) => {
+        return { ...product, id: product._id }
+      })
+    )
+    alert("DELETED SUCCESSFULLY!")
+  }
 
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "id", headerName: "ID", width: 300 },
     {
-      field: "product",
+      field: "title",
       headerName: "Product",
-      width: 200,
+      width: 300,
       renderCell: (params) => {
         return (
-          <div className="productListItem">
-            <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.name}
+          <div className='productListItem'>
+            <img className='productListImg' src={params.row.image0} alt='' />
+            {params.row.title}
           </div>
-        );
+        )
       },
     },
-    { field: "stock", headerName: "Stock", width: 200 },
+    { field: "numberInStock", headerName: "Stocks", width: 200 },
     {
       field: "status",
       headerName: "Status",
@@ -45,21 +73,24 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row.id}>
-              <button className="productListEdit">Edit</button>
+            <Link to={"/product/" + params.row._id}>
+              <button className='productListEdit'>Edit</button>
             </Link>
             <DeleteOutline
-              className="productListDelete"
-              onClick={() => handleDelete(params.row.id)}
+              className='productListDelete'
+              onClick={() => handleDelete(params.row._id)}
             />
           </>
-        );
+        )
       },
     },
-  ];
+  ]
 
   return (
-    <div className="productList">
+    <div className='productList'>
+      <Link to='/newproduct'>
+        <button className='productAddButton'>Create</button>
+      </Link>
       <DataGrid
         rows={data}
         disableSelectionOnClick
@@ -68,5 +99,5 @@ export default function ProductList() {
         checkboxSelection
       />
     </div>
-  );
+  )
 }

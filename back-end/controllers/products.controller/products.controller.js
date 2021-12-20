@@ -1,9 +1,19 @@
 const Product = require("../../models/Products/Products")
 const Category = require("../../models/Products/Category")
+const { deleteFalsyProp } = require("../../utils/deleteFalsyProp")
 
 const createProduct = async (req, res) => {
-  const { title, price, image0, image1, categorySlug, slug, description } =
-    req.body
+  const {
+    title,
+    price,
+    image0,
+    image1,
+    categorySlug,
+    slug,
+    description,
+    numberInStock,
+    status,
+  } = req.body
 
   const category = await Category.find({ categorySlug })
 
@@ -21,6 +31,8 @@ const createProduct = async (req, res) => {
     description,
     boughtTimes: 0,
     clickedTimes: 0,
+    numberInStock,
+    status,
   })
 
   await product.save()
@@ -33,7 +45,7 @@ const getProductsById = async (req, res) => {
   const product = await Product.findById(id)
 
   if (!product) {
-    res.status(404).send({
+    return res.status(404).send({
       message: "Not found this product",
     })
   }
@@ -48,8 +60,7 @@ const getAllProducts = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const id = req.params.id
-  const product = Product.findById(id)
-
+  const product = await Product.findById(id)
   if (!product) res.status(404).send({ message: "Not found this product" })
 
   const newValue = req.body
@@ -72,20 +83,23 @@ const updateProduct = async (req, res) => {
       "categorySlug",
       "slug",
       "description",
+      "numberInStock",
+      "status",
     ].includes(key)
   })
   if (check) {
-    const product = await Product.findById(id)
+    const deleteFalsy = deleteFalsyProp(newValue)
 
-    try {
-      keys.forEach((key) => {
-        product[key] = newValue[key]
-      })
-      const updatedProduct = await product.save()
-      res.status(200).send(updatedProduct)
-    } catch (e) {
-      res.status(500).send(e)
+    console.log(deleteFalsy)
+
+    for (key in deleteFalsy) {
+      product[key] = deleteFalsy[key]
     }
+
+    await product.save()
+    const updatedProduct = await Product.findById(id)
+
+    return res.status(200).send(updatedProduct)
   } else {
     res.status(400).send("Not acceptd strange keys")
   }

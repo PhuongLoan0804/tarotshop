@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 
 const ordersSchema = new mongoose.Schema({
   products: [{ productId: mongoose.Types.ObjectId, quantity: Number }],
+  status: String,
   owner: {
     type: mongoose.Types.ObjectId,
     ref: "User",
