@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import "./newProduct.css"
-import { makePostRequeset } from "../../utils/makeRequest"
+import { makePostRequeset, makeGetRequest } from "../../utils/makeRequest"
 import { uploadImage } from "../../utils/imageUpload"
 
 export default function NewProduct() {
@@ -14,6 +14,18 @@ export default function NewProduct() {
     numberInStock: 0,
     status: "true",
   })
+
+  const [categorySlug, setCategorySlug] = useState([])
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const categories = await makeGetRequest(
+        `${process.env.REACT_APP_BACK_END_URL}/categories/all`
+      )
+      setCategorySlug(categories)
+    }
+    getCategories()
+  }, [])
 
   const onChangeHandle = async (e) => {
     const { name, value } = e.target
@@ -38,6 +50,17 @@ export default function NewProduct() {
     )
 
     alert("ADDED SUCCESSFULLY!")
+
+    setInput({
+      title: "",
+      price: 0,
+      image0: "",
+      image1: "",
+      categorySlug: "",
+      description: "",
+      numberInStock: 0,
+      status: "true",
+    })
   }
 
   return (
@@ -87,14 +110,19 @@ export default function NewProduct() {
         </div>
         <div className='addProductItem'>
           <label>Category Slug</label>
-          <input
-            type='text'
-            placeholder='Antique'
+          <select
             name='categorySlug'
+            // value={categorySlug}
             onChange={onChangeHandle}
-            value={input.categorySlug}
-            required
-          />
+          >
+            {categorySlug.map((category) => {
+              return (
+                <option value={category.categorySlug} key={category._id}>
+                  {category.categorySlug}
+                </option>
+              )
+            })}
+          </select>
         </div>
         <div className='addProductItem'>
           <label>Description</label>

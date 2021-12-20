@@ -90,9 +90,7 @@ const updateProduct = async (req, res) => {
   if (check) {
     const deleteFalsy = deleteFalsyProp(newValue)
 
-    console.log(deleteFalsy)
-
-    for (key in deleteFalsy) {
+    for (const key in deleteFalsy) {
       product[key] = deleteFalsy[key]
     }
 

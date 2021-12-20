@@ -1,4 +1,4 @@
-import "./productList.css"
+import "./Categories.css"
 import { DataGrid } from "@material-ui/data-grid"
 import { DeleteOutline } from "@material-ui/icons"
 import { Link } from "react-router-dom"
@@ -7,6 +7,7 @@ import { makeGetRequest, makeDeleteRequest } from "../../utils/makeRequest"
 
 export default function ProductList() {
   const [data, setData] = useState([])
+
   const [isChange, setIsChange] = useState(true)
 
   useEffect(() => {
@@ -14,31 +15,31 @@ export default function ProductList() {
   }, [])
 
   useEffect(() => {
-    const getAllProducts = async () => {
-      const products = await makeGetRequest(
-        `${process.env.REACT_APP_BACK_END_URL}/products/all`
+    const getAllCategories = async () => {
+      const categories = await makeGetRequest(
+        `${process.env.REACT_APP_BACK_END_URL}/categories/all`
       )
 
       setData(
-        products.map((product) => {
-          return { ...product, id: product._id }
+        categories.map((category) => {
+          return { ...category, id: category._id }
         })
       )
     }
 
-    getAllProducts()
+    getAllCategories()
   }, [isChange])
 
   const handleDelete = async (id) => {
     await makeDeleteRequest(
-      `${process.env.REACT_APP_BACK_END_URL}/products/${id}`
+      `${process.env.REACT_APP_BACK_END_URL}/categories/${id}`
     )
 
-    const products = await makeGetRequest(
-      `${process.env.REACT_APP_BACK_END_URL}/products/all`
+    const categories = await makeGetRequest(
+      `${process.env.REACT_APP_BACK_END_URL}/categories/all`
     )
     setData(
-      products.map((product) => {
+      categories.map((product) => {
         return { ...product, id: product._id }
       })
     )
@@ -48,29 +49,14 @@ export default function ProductList() {
   const columns = [
     { field: "id", headerName: "ID", width: 300 },
     {
-      field: "title",
-      headerName: "Product",
+      field: "display",
+      headerName: "Display Name",
       width: 300,
       renderCell: (params) => {
-        return (
-          <div className='productListItem'>
-            <img className='productListImg' src={params.row.image0} alt='' />
-            {params.row.title}
-          </div>
-        )
+        return <div className='productListItem'>{params.row.display}</div>
       },
     },
-    { field: "numberInStock", headerName: "Stocks", width: 200 },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 160,
-    },
+    { field: "categorySlug", headerName: "Category Slug", width: 200 },
     {
       field: "action",
       headerName: "Action",
@@ -78,7 +64,7 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row._id}>
+            <Link to={"/category/" + params.row._id}>
               <button className='productListEdit'>Edit</button>
             </Link>
             <DeleteOutline
@@ -98,9 +84,6 @@ export default function ProductList() {
       </Link>
       <Link to='/newcategory'>
         <button className='productAddButton'>Create new category</button>
-      </Link>
-      <Link to='/categories'>
-        <button className='productAddButton'>View all categories</button>
       </Link>
       <DataGrid
         rows={data}

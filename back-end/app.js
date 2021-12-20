@@ -10,7 +10,7 @@ const categoriesRoute = require("./routes/categories")
 const express = require("express")
 const app = express()
 
-const whiteList = ["http://localhost:3000", "http://localhost:3001"]
+const whiteList = ["http://localhost:3000", "http://localhost:3001", "postman"]
 
 const corsOptions = {
   credentials: true,
@@ -25,7 +25,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(cookieParser())
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 

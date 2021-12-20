@@ -10,6 +10,7 @@ import Button from "../components/Button"
 import productData from "../assets/fake-data/products"
 import category from "../assets/fake-data/category"
 import prices from "../assets/fake-data/product-price"
+import { makeGetRequest } from "../utils/makeRequest"
 
 const Catalog = () => {
   const initFilter = {
@@ -24,6 +25,17 @@ const Catalog = () => {
   const [filter, setFilter] = useState(initFilter)
 
   const [search, setSearch] = useState("")
+
+  useEffect(() => {
+    const getAllProductsFromDB = async () => {
+      const products = await makeGetRequest(
+        `${process.env.REACT_APP_BACK_END_URL}/products/all`
+      )
+      setProducts(products)
+    }
+
+    getAllProductsFromDB()
+  }, [])
 
   const handleChange = (value) => {
     setSearch(value)
@@ -168,14 +180,14 @@ const Catalog = () => {
         </div>
         <div className='catalog__content'>
           <Grid col={3} mdCol={2} smCol={1} gap={20}>
-            {products.map((item, index) => (
+            {products.map((product) => (
               <ProductCard
-                key={index}
-                img01={item.image01}
-                img02={item.image02}
-                name={item.title}
-                price={Number(item.price)}
-                slug={item.slug}
+                key={product._id}
+                img01={product.image0}
+                img02={product.image0}
+                name={product.title}
+                price={Number(product.price)}
+                slug={product.categorySlug}
               />
             ))}
             {products.length === 0 && <h1>Không tìm thấy kết quả nào!</h1>}

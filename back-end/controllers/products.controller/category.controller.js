@@ -1,4 +1,5 @@
 const Category = require("../../models/Products/Category")
+const { deleteFalsyProp } = require("../../utils/deleteFalsyProp")
 
 const createCategory = async (req, res) => {
   const { display, categorySlug } = req.body
@@ -57,9 +58,12 @@ const updateCategory = async (req, res) => {
   })
   if (check) {
     try {
-      keys.forEach((key) => {
-        category[key] = newValue[key]
-      })
+      const keyDeletedFalsy = deleteFalsyProp(newValue)
+
+      for (const key in keyDeletedFalsy) {
+        category[key] = keyDeletedFalsy[key]
+      }
+
       const updatedCategory = await category.save()
       res.status(200).send(updatedCategory)
     } catch (e) {
