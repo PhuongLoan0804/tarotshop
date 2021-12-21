@@ -4,9 +4,9 @@ const productsController = require("../controllers/products.controller/products.
 const auth = require("../middleware/auth")
 
 router.post("/products", auth, productsController.createProduct)
+router.get("/products", productsController.getProductByQuery)
 router.get("/products/all", productsController.getAllProducts)
 router.get("/products/:id", productsController.getProductsById)
-router.get("/products", productsController.getProductByCategorySlug)
 router.patch("/products/:id", auth, productsController.updateProduct)
 router.delete("/products/:id", auth, productsController.deleteProduct)
 

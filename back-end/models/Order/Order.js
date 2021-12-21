@@ -16,6 +16,7 @@ const ordersSchema = new mongoose.Schema({
   ward: { value: Number, label: String },
   detail: String,
   phoneNumber: String,
+  status: String,
 })
 
 const Order = new mongoose.model("Order", ordersSchema)

@@ -117,17 +117,36 @@ const deleteProduct = async (req, res) => {
     })
 }
 
-const getProductByCategorySlug = async (req, res) => {
+const getProductByQuery = async (req, res) => {
   const categorySlug = req.query.categorySlug
-  const category = await Category.findOne({ categorySlug })
+  const limitNum = req.query.limit
+  const random = req.query.random
 
-  if (!category) {
-    return res.status(404).send({ message: "Not found this category" })
+  if (categorySlug) {
+    const category = await Category.findOne({ categorySlug })
+    if (!category) {
+      return res.status(404).send({ message: "Not found this category" })
+    }
+
+    const products = await Product.find({ categorySlug })
+
+    return res.status(200).send(products)
   }
 
-  const products = await Product.find({ categorySlug })
+  if (limitNum) {
+    const products = await Product.find({}).limit(Number(limitNum))
+    return res.status(200).send(products)
+  }
 
-  res.status(200).send(products)
+  if (random) {
+    const products = await Product.aggregate([
+      { $sample: { size: Number(random) } },
+    ])
+
+    return res.status(200).send(products)
+  }
+
+  res.status(200).send(await Product.find({}))
 }
 
 module.exports = {
@@ -136,5 +155,5 @@ module.exports = {
   getAllProducts,
   updateProduct,
   deleteProduct,
-  getProductByCategorySlug,
+  getProductByQuery,
 }
