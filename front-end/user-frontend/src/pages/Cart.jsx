@@ -7,6 +7,7 @@ import Helmet from "../components/Helmet"
 import CartItem from "../components/CartItem"
 import Button from "../components/Button"
 import Alert from "../components/Alert"
+import Grid from "../components/Grid"
 import LocationForm from "../components/LocationForm"
 
 import productData from "../assets/fake-data/products"
@@ -46,32 +47,34 @@ const Cart = () => {
       {!isLogged && (
         <Alert className='alert' message='Xin đăng nhập trước khi mua hàng' />
       )}
-      <div className='cart'>
-        <div className='cart__info'>
-          <div className='cart__info__txt'>
-            <p>Bạn đang có {totalProducts} sản phẩm trong giỏ hàng</p>
-            <div className='cart__info__txt__price'>
-              <span>Thành tiền:</span>{" "}
-              <span>{numberWithCommas(Number(totalPrice))}</span>
+      <Grid col={2} mdCol={1} smCol={1} gap={20}>
+        <div className='cart'>
+          <div className='cart__info'>
+            <div className='cart__info__txt'>
+              <p>Bạn đang có {totalProducts} sản phẩm trong giỏ hàng</p>
+              <div className='cart__info__txt__price'>
+                <span>Thành tiền:</span>{" "}
+                <span>{numberWithCommas(Number(totalPrice))}</span>
+              </div>
+            </div>
+            <div className='cart__info__btn'>
+              <Link to='/catalog'>
+                <Button size='block'>Tiếp tục mua hàng</Button>
+              </Link>
             </div>
           </div>
-          <div className='cart__info__btn'>
-            <Link to='/catalog'>
-              <Button size='block'>Tiếp tục mua hàng</Button>
-            </Link>
+          <div className='cart__list'>
+            {cartProducts.map((item, index) => (
+              <CartItem item={item} key={index} />
+            ))}
           </div>
         </div>
-        <div className='cart__list'>
-          {cartProducts.map((item, index) => (
-            <CartItem item={item} key={index} />
-          ))}
-        </div>
-      </div>
-      <LocationForm
-        items={{ cartItems, totalProducts, totalPrice }}
-        // setProvince={setProvince}
-        setIsLogged={setIsLogged}
-      />
+        <LocationForm
+          items={{ cartItems, totalProducts, totalPrice }}
+          // setProvince={setProvince}
+          setIsLogged={setIsLogged}
+        />
+      </Grid>
     </Helmet>
   )
 }
