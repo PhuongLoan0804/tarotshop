@@ -1,12 +1,12 @@
 .cart {
-  @include flex(flex-start, flex-start);
+  // @include flex(flex-start, flex-start);
 
-  @include mobile {
-    flex-wrap: wrap;
-  }
+  // @include mobile {
+  //   flex-wrap: wrap;
+  // }
 
   &__list {
-    width: 60%;
+    width: 90%;
 
     @include mobile {
       width: 100%;
@@ -19,7 +19,7 @@
     margin-top: 30px;
     box-shadow: $box-shadow;
     position: sticky;
-    top: calc(#{$header-shrink-height} + 20px);
+    // top: calc(#{$header-shrink-height} + 20px);
 
     @include mobile {
       width: 100%;
@@ -129,21 +129,26 @@
     margin-bottom: 1.5rem;
 
     input {
-      padding: 10px;
-      width: 50%;
+      width: 100%;
       font-size: 1.25rem;
       outline: none;
-      padding: 5px 10px;
-      border-color: #483434;
-      border-radius: 3px;
+      padding: 9px 10px;
+      border-color: hsl(0, 0%, 80%);
+      border-radius: 4px;
+      border-style: solid;
+      border-width: 1px;
     }
   }
 
   Button {
-    width: 50%;
+    width: 100%;
     border-radius: 5px;
   }
 }
 .width {
-  width: 50%;
+  width: 100%;
 }
+
+// .grid{
+//   grid-template-columns: 2fr 1fr;
+// }
