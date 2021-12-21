@@ -15,18 +15,18 @@ export const cartItemsSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const newItem = action.payload
-      const duplicate = state.value.filter((e) => e.slug === newItem.slug)
+      const duplicate = state.value.filter((e) => e.id === newItem.id)
 
       console.log(state)
       console.log(action)
 
       if (duplicate.length > 0) {
-        state.value = state.value.filter((e) => e.slug !== newItem.slug)
+        state.value = state.value.filter((e) => e.id !== newItem.id)
         state.value = [
           ...state.value,
           {
             id: duplicate[0].id,
-            slug: newItem.slug,
+            categorySlug: newItem.categorySlug,
             price: newItem.price,
             quantity: newItem.quantity + duplicate[0].quantity,
           },
@@ -48,14 +48,14 @@ export const cartItemsSlice = createSlice({
     },
     updateItem: (state, action) => {
       const newItem = action.payload
-      const item = state.value.filter((e) => e.slug === newItem.slug)
+      const item = state.value.filter((e) => e.id === newItem.id)
       if (item.length > 0) {
-        state.value = state.value.filter((e) => e.slug !== newItem.slug)
+        state.value = state.value.filter((e) => e.id !== newItem.id)
         state.value = [
           ...state.value,
           {
             id: item[0].id,
-            slug: newItem.slug,
+            CategorySlug: newItem.CategorySlug,
             price: newItem.price,
             quantity: newItem.quantity,
           },
@@ -70,7 +70,7 @@ export const cartItemsSlice = createSlice({
     },
     removeItem: (state, action) => {
       const item = action.payload
-      state.value = state.value.filter((e) => e.slug !== item.slug)
+      state.value = state.value.filter((e) => e.id !== item.id)
       localStorage.setItem(
         "cartItems",
         JSON.stringify(

@@ -13,24 +13,40 @@ import LocationForm from "../components/LocationForm"
 import productData from "../assets/fake-data/products"
 
 import numberWithCommas from "../utils/numberWithCommas"
+import { makeGetRequest } from "../utils/makeRequest"
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value)
+  // console.log(cartItems)
 
   // const [province, setProvince] = useState({})
 
-  const [cartProducts, setCartProducts] = useState(
-    productData.getCartItemsInfo(cartItems)
-  )
-
-  const [isLogged, setIsLogged] = useState(true)
-
-  const [totalProducts, setTotalProducts] = useState(0)
-
-  const [totalPrice, setTotalPrice] = useState(0)
+  const [cartProducts, setCartProducts] = useState([])
 
   useEffect(() => {
-    setCartProducts(productData.getCartItemsInfo(cartItems))
+    const getProducts = async () => {
+      const products = await makeGetRequest(
+        `${process.env.REACT_APP_BACK_END_URL}/products/?productsId=${cartItems
+          .map((item) => item.id)
+          .toString()}`
+      )
+
+      setCartProducts(
+        products.map((product) => {
+          const match = cartItems.find((item) => item.id === product._id)
+          return {
+            ...product,
+            quantity: match.quantity,
+            id: product._id,
+          }
+        })
+      )
+    }
+    getProducts()
+  }, [cartItems])
+
+  useEffect(() => {
+    // setCartProducts(productData.getCartItemsInfo(cartItems))
     setTotalPrice(
       cartItems.reduce(
         (total, item) => total + Number(item.quantity) * Number(item.price),
@@ -41,6 +57,12 @@ const Cart = () => {
       cartItems.reduce((total, item) => total + Number(item.quantity), 0)
     )
   }, [cartItems])
+
+  const [isLogged, setIsLogged] = useState(true)
+
+  const [totalProducts, setTotalProducts] = useState(0)
+
+  const [totalPrice, setTotalPrice] = useState(0)
 
   return (
     <Helmet title='Giỏ hàng'>
@@ -64,8 +86,8 @@ const Cart = () => {
             </div>
           </div>
           <div className='cart__list'>
-            {cartProducts.map((item, index) => (
-              <CartItem item={item} key={index} />
+            {cartProducts.map((item) => (
+              <CartItem item={item} key={item._id} />
             ))}
           </div>
         </div>

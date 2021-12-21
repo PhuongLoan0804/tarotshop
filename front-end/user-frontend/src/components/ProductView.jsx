@@ -30,7 +30,7 @@ const ProductView = (props) => {
       description: "",
     }
 
-  const [previewImg, setPreviewImg] = useState(product.image01)
+  const [previewImg, setPreviewImg] = useState(product.image0)
 
   const [quantity, setQuantity] = useState(1)
 
@@ -43,7 +43,7 @@ const ProductView = (props) => {
   }
 
   useEffect(() => {
-    setPreviewImg(product.image01)
+    setPreviewImg(product.image0)
     setQuantity(1)
   }, [product])
 
@@ -54,10 +54,10 @@ const ProductView = (props) => {
   const addToCart = () => {
     if (check()) {
       let newItem = {
-        slug: product.slug,
+        categorySlug: product.categorySlug,
         price: product.price,
         quantity: quantity,
-        id: product.id,
+        id: product._id,
       }
       if (dispatch(addItem(newItem))) {
         setIsAddedToCart((pre) => !pre)
@@ -70,7 +70,7 @@ const ProductView = (props) => {
   const goToCart = () => {
     if (check()) {
       let newItem = {
-        slug: product.slug,
+        slug: product.categorySlug,
         price: product.price,
         quantity: quantity,
       }
@@ -91,18 +91,18 @@ const ProductView = (props) => {
             <div
               className='product__images__list__item'
               onClick={() => {
-                setPreviewImg(product.image01)
+                setPreviewImg(product.image0)
               }}
             >
-              <img src={product.image01} alt='' />
+              <img src={product.image0} alt='' />
             </div>
             <div
               className='product__images__list__item'
               onClick={() => {
-                setPreviewImg(product.image02)
+                setPreviewImg(product.image0)
               }}
             >
-              <img src={product.image02} alt='' />
+              <img src={product.image0} alt='' />
             </div>
           </div>
           <div className='product__images__main'>

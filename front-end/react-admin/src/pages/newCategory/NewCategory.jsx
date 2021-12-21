@@ -46,7 +46,7 @@ export default function NewCategory() {
           />
         </div>
         <div className='addProductItem'>
-          <label>Price</label>
+          <label>Category Slug</label>
           <input
             type='text'
             name='categorySlug'

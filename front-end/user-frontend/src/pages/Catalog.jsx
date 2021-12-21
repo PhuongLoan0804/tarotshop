@@ -7,7 +7,7 @@ import ProductCard from "../components/ProductCard"
 import Checkbox from "../components/CheckBox"
 import Button from "../components/Button"
 
-import productData from "../assets/fake-data/products"
+// import productData from "../assets/fake-data/products"
 import category from "../assets/fake-data/category"
 import prices from "../assets/fake-data/product-price"
 import { makeGetRequest } from "../utils/makeRequest"
@@ -18,9 +18,9 @@ const Catalog = () => {
     price: [],
   }
 
-  const productList = productData.getAllProducts()
+  // const productList = productData.getAllProducts()
 
-  const [products, setProducts] = useState(productList)
+  const [products, setProducts] = useState([])
 
   const [filter, setFilter] = useState(initFilter)
 
@@ -46,9 +46,9 @@ const Catalog = () => {
   const filterData = (value) => {
     const lowerCaseValue = value.toLowerCase().trim()
     if (!lowerCaseValue) {
-      setProducts(productList)
+      setProducts(products)
     } else {
-      const filteredData = productList.filter((item) => {
+      const filteredData = products.filter((item) => {
         return Object.keys(item).some((key) => {
           return item[key].toString().toLowerCase().includes(lowerCaseValue)
         })
@@ -92,14 +92,14 @@ const Catalog = () => {
   const clearFilter = () => setFilter(initFilter)
 
   const updateProducts = useCallback(() => {
-    let temp = productList
+    let temp = products
 
     if (filter.category.length > 0) {
       temp = temp.filter((e) => filter.category.includes(e.categorySlug))
     }
 
     setProducts(temp)
-  }, [filter, productList])
+  }, [filter, products])
 
   useEffect(() => {
     updateProducts()
@@ -188,6 +188,7 @@ const Catalog = () => {
                 name={product.title}
                 price={Number(product.price)}
                 slug={product.categorySlug}
+                _id={product._id}
               />
             ))}
             {products.length === 0 && <h1>Không tìm thấy kết quả nào!</h1>}

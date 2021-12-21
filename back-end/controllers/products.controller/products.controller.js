@@ -1,6 +1,7 @@
 const Product = require("../../models/Products/Products")
 const Category = require("../../models/Products/Category")
 const { deleteFalsyProp } = require("../../utils/deleteFalsyProp")
+const mongoose = require("mongoose")
 
 const createProduct = async (req, res) => {
   const {
@@ -45,9 +46,7 @@ const getProductsById = async (req, res) => {
   const product = await Product.findById(id)
 
   if (!product) {
-    return res.status(404).send({
-      message: "Not found this product",
-    })
+    return res.status(404).send({ message: "Not found this product" })
   }
 
   res.status(200).send(product)
@@ -62,7 +61,7 @@ const updateProduct = async (req, res) => {
   const id = req.params.id
   const product = await Product.findById(id)
   if (!product) res.status(404).send({ message: "Not found this product" })
-
+  oke
   const newValue = req.body
 
   const categorySlug = newValue.categorySlug
@@ -110,17 +109,18 @@ const deleteProduct = async (req, res) => {
     res.status(404).send({
       message: "Not found this product",
     })
-  else
-    res.status(200).send({
-      message: "Deleted product",
-      body: product,
-    })
+  elseoke
+  res.status(200).send({
+    message: "Deleted product",
+    body: product,
+  })
 }
 
 const getProductByQuery = async (req, res) => {
   const categorySlug = req.query.categorySlug
   const limitNum = req.query.limit
   const random = req.query.random
+  const productsId = req.query.productsId
 
   if (categorySlug) {
     const category = await Category.findOne({ categorySlug })
@@ -142,6 +142,16 @@ const getProductByQuery = async (req, res) => {
     const products = await Product.aggregate([
       { $sample: { size: Number(random) } },
     ])
+
+    return res.status(200).send(products)
+  }
+
+  if (productsId) {
+    const prodIds = productsId
+      .split(",")
+      .map((id) => mongoose.Types.ObjectId(id))
+
+    const products = await Product.find({ _id: { $in: prodIds } })
 
     return res.status(200).send(products)
   }
