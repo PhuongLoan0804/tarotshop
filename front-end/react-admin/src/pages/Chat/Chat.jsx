@@ -63,13 +63,13 @@ function Chat() {
   }
 
   return (
-    <div class='box-chat'>
-      <div class='box-chat_message'>
+    <div className='box-chat'>
+      <div className='box-chat_message'>
         {renderMess}
         <div style={{ float: "left", clear: "both" }} ref={messagesEnd}></div>
       </div>
 
-      <div class='send-box'>
+      <div className='send-box'>
         <textarea
           value={message}
           onKeyDown={onEnterPress}

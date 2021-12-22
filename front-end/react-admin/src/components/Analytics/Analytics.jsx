@@ -4,24 +4,10 @@ import { Doughnut } from "react-chartjs-2"
 import { useState } from "react"
 import { useEffect } from "react"
 import { makeGetRequest } from "../../utils/makeRequest"
+import random_rgba from "../../utils/getRandomColor"
 
 ChartJS.register(ArcElement, Tooltip, Legend)
-function random_rgba(blur) {
-  const o = Math.round,
-    r = Math.random,
-    s = 255
-  return (
-    "rgba(" +
-    o(r() * s) +
-    "," +
-    o(r() * s) +
-    "," +
-    o(r() * s) +
-    "," +
-    blur +
-    ")"
-  )
-}
+
 export function Analytics() {
   const [data, setData] = useState({
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -81,8 +67,7 @@ export function Analytics() {
     <div>
       <Doughnut
         data={data}
-        //   width={"100%"}
-        //   options={{ maintainAspectRatio: false }}
+        options={{ responsive: true, maintainAspectRatio: false }}
       />
     </div>
   )

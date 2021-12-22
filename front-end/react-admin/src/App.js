@@ -17,6 +17,7 @@ import Order from "./pages/Order/Order"
 import NewOrder from "./pages/newOrder/newOrder"
 import Chat from "./pages/Chat/Chat"
 import { Analytics } from "./components/Analytics/Analytics"
+import { Sales } from "./components/Sales/Sales"
 
 function App() {
   return (
@@ -69,6 +70,9 @@ function App() {
           </Route>
           <Route exact path='/analytics'>
             <Analytics />
+          </Route>
+          <Route exact path='/sales'>
+            <Sales />
           </Route>
         </Switch>
       </div>
