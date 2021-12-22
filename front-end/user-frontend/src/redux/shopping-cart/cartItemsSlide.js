@@ -17,8 +17,8 @@ export const cartItemsSlice = createSlice({
       const newItem = action.payload
       const duplicate = state.value.filter((e) => e.id === newItem.id)
 
-      console.log(state)
-      console.log(action)
+      // console.log(state)
+      // console.log(action)
 
       if (duplicate.length > 0) {
         state.value = state.value.filter((e) => e.id !== newItem.id)

@@ -1,4 +1,5 @@
 const User = require("../../models/Users/User")
+const { deleteFalsyProp } = require("../../utils/deleteFalsyProp")
 
 const createUser = async (req, res) => {
   try {
@@ -64,28 +65,37 @@ const updateUser = async (req, res) => {
   const newValue = req.body
   const keys = Object.keys(newValue)
   const check = keys.every((key) => {
-    return ["name", "email", "password"].includes(key)
+    return ["name", "email", "password", "phone", "address"].includes(key)
   })
+
+  const deletedFalsy = deleteFalsyProp(newValue)
+  console.log(deletedFalsy)
+
   if (check) {
     try {
-      keys.forEach((key) => {
-        req.user[key] = newValue[key]
-      })
+      for (const key in deletedFalsy) {
+        req.user[key] = deletedFalsy[key]
+      }
       const updatedUser = await req.user.save()
-      res.status(200).send(updatedUser)
+      res.status(201).send(updatedUser)
     } catch (e) {
+      console.log(e)
       res.status(500).send(e)
     }
   } else {
-    res.status(400).send("accepted keys: ['name', 'email', 'password']")
+    res
+      .status(400)
+      .send("accepted keys: ['name', 'email', 'password', 'phone', 'address']")
   }
 }
 
 const deleteUser = async (req, res) => {
   try {
-    await req.user.remove()
+    const id = req.params.id
+    console.log(id)
+    await User.findByIdAndDelete(id)
 
-    res.send(`deleted user ${req.user.email}`)
+    res.status(200).send()
   } catch (e) {
     res.status(500).send(e)
   }
@@ -111,6 +121,11 @@ const checkOldPassword = async (req, res) => {
   }
 }
 
+const getAllUsers = async (req, res) => {
+  const users = await User.find({})
+  res.status(200).send(users)
+}
+
 module.exports = {
   createUser,
   loginUser,
@@ -120,4 +135,5 @@ module.exports = {
   deleteUser,
   updateUser,
   checkOldPassword,
+  getAllUsers,
 }

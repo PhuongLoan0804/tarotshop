@@ -12,6 +12,11 @@ import NewProduct from "./pages/newProduct/NewProduct"
 import NewCategory from "./pages/newCategory/NewCategory"
 import CategoriesList from "./pages/CategoriesList/CategoriesList"
 import Category from "./pages/Category/Category"
+import OrdersList from "./pages/OrdersList/OrdersList"
+import Order from "./pages/Order/Order"
+import NewOrder from "./pages/newOrder/newOrder"
+import Chat from "./pages/Chat/Chat"
+import { Analytics } from "./components/Analytics/Analytics"
 
 function App() {
   return (
@@ -49,6 +54,21 @@ function App() {
           </Route>
           <Route path='/category/:id'>
             <Category />
+          </Route>
+          <Route exact path='/orders'>
+            <OrdersList />
+          </Route>
+          <Route exact path='/orders/:id'>
+            <Order />
+          </Route>
+          <Route exact path='/neworder'>
+            <NewOrder />
+          </Route>
+          <Route exact path='/chat'>
+            <Chat />
+          </Route>
+          <Route exact path='/analytics'>
+            <Analytics />
           </Route>
         </Switch>
       </div>

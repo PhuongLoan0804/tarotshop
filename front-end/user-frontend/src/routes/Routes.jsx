@@ -8,6 +8,7 @@ import Cart from "../pages/Cart"
 import Product from "../pages/Product"
 import Contact from "../pages/Contact"
 import Account from "../pages/Account"
+import Chat from "../pages/Chat"
 
 import Login from "../components/Login"
 import Register from "../components/Register"
@@ -23,6 +24,7 @@ const Routes = () => {
       <Route path='/login' component={Login} />
       <Route path='/register' component={Register} />
       <Route path='/me' component={Account} />
+      <Route path='/chat' component={Chat} />
     </Switch>
   )
 }

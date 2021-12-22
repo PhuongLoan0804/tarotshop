@@ -36,13 +36,26 @@ function LocationForm(props) {
     const isLogged = await checkValidCookie()
     props.setIsLogged(isLogged)
 
-    makePostRequeset(`${process.env.REACT_APP_BACK_END_URL}/orders`, {
+    console.log(props.items)
+
+    console.log({
       ...props.items,
       selectedCity,
       selectedDistrict,
       selectedWard,
       ...userInput,
     })
+
+    await makePostRequeset(`${process.env.REACT_APP_BACK_END_URL}/orders`, {
+      ...props.items,
+      selectedCity,
+      selectedDistrict,
+      selectedWard,
+      ...userInput,
+    })
+    localStorage.clear()
+    alert("Đặt hàng thành công")
+    window.location.href = "/me"
   }
 
   return (

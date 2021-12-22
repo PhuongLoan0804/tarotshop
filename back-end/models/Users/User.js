@@ -38,6 +38,13 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
+    status: {
+      type: String,
+      default: "active",
+    },
+    phone: String,
+    address: String,
+    gender: String,
     tokens: [
       {
         token: {

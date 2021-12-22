@@ -103,17 +103,17 @@ const updateProduct = async (req, res) => {
 }
 
 const deleteProduct = async (req, res) => {
-  const product = await Product.findOneAndDelete(req.params.id)
+  const product = await Product.findByIdAndDelete(req.params.id)
 
   if (!product)
     res.status(404).send({
       message: "Not found this product",
     })
-  elseoke
-  res.status(200).send({
-    message: "Deleted product",
-    body: product,
-  })
+  else
+    res.status(200).send({
+      message: "Deleted product",
+      body: product,
+    })
 }
 
 const getProductByQuery = async (req, res) => {

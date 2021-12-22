@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const ordersSchema = new mongoose.Schema({
-  products: [{ productId: mongoose.Types.ObjectId, quantity: Number }],
+  products: {},
   status: String,
   owner: {
     type: mongoose.Types.ObjectId,
@@ -16,7 +16,10 @@ const ordersSchema = new mongoose.Schema({
   ward: { value: Number, label: String },
   detail: String,
   phoneNumber: String,
-  status: String,
+  status: {
+    type: String,
+    default: "PENDING",
+  },
 })
 
 const Order = new mongoose.model("Order", ordersSchema)

@@ -13,8 +13,10 @@ const Account = () => {
   const initialState = {
     name: "",
     email: "",
+    phone: "",
+    address: "",
   }
-  const [{ name, email }, setAccount] = useState(initialState)
+  const [{ name, email, phone, address }, setAccount] = useState(initialState)
 
   const [carts, setCart] = useState([])
 
@@ -46,9 +48,11 @@ const Account = () => {
         setAccount({
           name: user.user.name,
           email: user.user.email,
+          phone: user.user.phone,
+          address: user.user.address,
         })
       } catch (error) {
-        console.log(error)
+        alert("errorr")
         window.location.href = "/login"
       }
     }
@@ -72,6 +76,14 @@ const Account = () => {
                 <label>Email</label>
                 <p>{email}</p>
               </div>
+              <div className='form-group'>
+                <label>Phone</label>
+                <p>{phone}</p>
+              </div>
+              <div className='form-group'>
+                <label>Địa chỉ</label>
+                <p>{address}</p>
+              </div>
               <div className='btn-group'>
                 <Button size='sm' onClick={handleEditButton}>
                   Sửa
@@ -91,6 +103,7 @@ const Account = () => {
                     <th>Mã đơn hàng</th>
                     <th>Ngày mua</th>
                     <th>Sản phẩm</th>
+                    <th>Trạng thái</th>
                     <th>Tổng tiền</th>
                   </tr>
                 </thead>
@@ -105,6 +118,7 @@ const Account = () => {
                         </td>
                         <td>{new Date(cart.orderDate).toLocaleString()}</td>
                         <td>Đơn hàng này có {cart.totalProducts} sản phẩm</td>
+                        <td>{cart.status}</td>
                         <td>{numberWithCommas(cart.totalPrice)}</td>
                       </tr>
                     )

@@ -6,7 +6,8 @@ const orderController = require("../controllers/order.controller/order.controlle
 router.post("/orders", auth, orderController.createOrder)
 router.get("/orders/:id", auth, orderController.getOrderById)
 router.get("/orders", auth, orderController.getOrders)
+router.get("/admin/orders", auth, orderController.getAllOrders)
 router.delete("/orders/:id", auth, orderController.deleteOrder)
-router.patch("/order/:id", auth, orderController.updateOrder)
+router.patch("/orders/:id", auth, orderController.updateOrder)
 
 module.exports = router

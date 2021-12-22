@@ -10,6 +10,8 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    phone: "",
+    address: "",
   })
 
   const onChangeInput = (e) => {
@@ -64,6 +66,24 @@ const Register = () => {
             placeholder='Password'
             required
             value={user.password}
+            onChange={onChangeInput}
+          />
+          <label htmlFor='phone'>Phone Number</label>
+          <input
+            type='tel'
+            name='phone'
+            placeholder='Phone Number'
+            required
+            value={user.phone}
+            onChange={onChangeInput}
+          />
+          <label htmlFor='address'>Address</label>
+          <input
+            type='text'
+            name='address'
+            placeholder='Email'
+            required
+            value={user.address}
             onChange={onChangeInput}
           />
           <div className='row'>

@@ -10,8 +10,6 @@ import Alert from "../components/Alert"
 import Grid from "../components/Grid"
 import LocationForm from "../components/LocationForm"
 
-import productData from "../assets/fake-data/products"
-
 import numberWithCommas from "../utils/numberWithCommas"
 import { makeGetRequest } from "../utils/makeRequest"
 
@@ -36,7 +34,7 @@ const Cart = () => {
           const match = cartItems.find((item) => item.id === product._id)
           return {
             ...product,
-            quantity: match.quantity,
+            quantity: match?.quantity,
             id: product._id,
           }
         })
