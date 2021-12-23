@@ -4,7 +4,7 @@
 
 - [x] Handle `xem-chi-tiet` button
 - [x] Contact page
-- [ ] Price filter
+- [x] Price filter
 - [x] Search
 
 ## Users
@@ -12,34 +12,34 @@
 ### Features
 
 - [x] Login
-- [ ] Logout
+- [x] Logout
 - [x] Sign up
-- [ ] Bought history
-  - [ ] Logged in user can use this feature
-- [ ] Buy things
+- [x] Bought history
+  - [x] Logged in user can use this feature
+- [x] Buy things
   - [x] Logged in user can use this feature
 
 ## Administrators
 
 ### Features
 
-- [ ] Store
-  - [ ] Products Type
-  - [ ] CRUD Products
-    - [ ] C
-    - [ ] R
-    - [ ] U
-    - [ ] D
-- [ ] QUAN LI DON HANG
+- [x] Store
+  - [x] Products Type
+  - [x] CRUD Products
+    - [x] C
+    - [x] R
+    - [x] U
+    - [x] D
+- [x] QUAN LI DON HANG
 
-  - [ ] Sort by date
-  - [ ] CRUD DON HANG
-    - [ ] C
-    - [ ] R
-    - [ ] U
-    - [ ] D
+  - [x] Sort by date
+  - [x] CRUD DON HANG
+    - [x] C
+    - [x] R
+    - [x] U
+    - [x] D
 
-- [ ] Statistics
-  - [ ] DOANH THU
-    - [ ] Sort by date
-  - [ ] The Most clicked products
+- [x] Statistics
+  - [x] DOANH THU
+    - [x] Sort by date
+  - [x] The Most clicked products
